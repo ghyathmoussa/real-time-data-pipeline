@@ -2,12 +2,13 @@ import json
 from typing import List
 from kafka import KafkaProducer, KafkaConsumer
 from aiokafka import AIOKafkaConsumer
+from config import Config
 import socket
 
 class KafkaClient:
-    def __init__(self, loop, bootstrap_servers: List[str]):
+    def __init__(self, loop):
         self.loop = loop
-        self.KAFKA_SERVERS = bootstrap_servers
+        self.KAFKA_SERVERS = Config().get_kafka_host()
         self.client_id = socket.gethostname()
         self.value_serializer = lambda v: json.dumps(v).encode('utf-8')
         self.value_deserializer = lambda v: json.loads(v.decode('utf-8'))

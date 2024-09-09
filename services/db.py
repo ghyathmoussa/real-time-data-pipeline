@@ -2,10 +2,12 @@
 # You can use any database you want
 
 from elasticsearch import Elasticsearch
+from config import Config
 
 class ElasticClient:
-    def __init__(self, host):
-        self.es_client = Elasticsearch(host)
+    def __init__(self, **kwargs):
+        self.config = Config()
+        self.es_client = Elasticsearch(kwargs.get("host", self.config.get_es_config()["url"]))
     
     def insert(self, index, body, id, doc_type="doc"):
         self.es_client.index(index=index, doc_type=doc_type, id=id, body=body)
