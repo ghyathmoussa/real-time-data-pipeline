@@ -1,0 +1,6 @@
+redis
+fastapi
+uvicorn
+aiokafka
+kafka-python
+elasticsearch==7.17.4

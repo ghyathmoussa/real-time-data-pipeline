@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  pipeline-service:
+    build:
+      context: .
+      network: host
+    image: image_name
+    container_name: real-time-pipeline
+    restart: unless-stopped
+    environment:
+      FLASK_APP: ${PIPELINE_APP_NAME:-pipeline-app}
+      DEBUG: ${PIPELINE_APP_DEBUG:-True}
+      KAFKA_HOST: ${KAFKA_HOST}
+      KAFKA_PORT: ${KAFKA_PORT}
+      KAFKA_CONSUMER_GROUP: ${KAFKA_CONSUMER_GROUP}
+      KAFKA_SOURCE_TOPIC: ${KAFKA_SOURCE_TOPIC}
+      KAFKA_DESTINATION_TOPIC: ${KAFKA_DESTINATION_TOPIC}
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+      ES_HOST: ${ES_HOST}
+      ES_PORT: ${ES_PORT}
+      ES_INDEX_NAME: ${ES_INDEX_NAME}
+      ES_USER: ${ES_USER}
+      ES_PASSWORD: ${ES_PASSWORD}
+    ports:
+      - "5544:5544"
+    command: python3 /app/main.py

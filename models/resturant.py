@@ -50,7 +50,7 @@ class StgMessageProcessor:
                 payload=msg["payload"]
             )
         dst_msg = self._construct_output_msg()
-        self.producer.produce(topic=your_topic, msg=dst_msg)
+        self.producer.produce(topic="your_topic", msg=dst_msg)
     def _construct_output_msg(self, msg: dict):
         obj_id = msg["payload"]["object_name"]["id"]
         obj_data = self.redis.get(obj_id)
@@ -65,7 +65,17 @@ class StgMessageProcessor:
         ## Add waht you want from data
         return {
             "obj_id": msg["object_id"],
-            "obj_type": msg["object_type"]
+            "obj_type": msg["object_type"],
+            "payload": {
+                "_id": "UUID",
+                ## Rest of Payload
+            },
+            "user": { ## User Info
+                "user_id": user_id,
+                "username": user_name,
+                "user_login": user_login
+            }
+            # Add more object
         }
         
         

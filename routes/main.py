@@ -12,4 +12,4 @@ def get_health(req: Request):
     logger.info(f"IP: {req.client.host} | Health")
     return {"message": "Healthy", "status_code": 200}
 
-route.get("/getg")
+## Add more Routes

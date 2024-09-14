@@ -27,6 +27,11 @@ class Config:
             "username": os.getenv("ES_USERNAME"),
             "password": os.getenv("ES_PASSWORD")
         }
+    def get_api_config(self,):
+        return {
+            "HOST":"0.0.0.0",
+            "PORT": 5544
+        }
 # Logger Config
 LOG_DIR = PROJECT_DIR  /  "logs"
 LOG_LEVEL = 'INFO'
