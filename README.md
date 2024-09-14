@@ -13,7 +13,8 @@ This template allow you to create a pipeline that use Redis, Kafka, and Elastics
 - run the scripts that create Kafka, Redis, and Kubernetes containers
 - it is advanced to run kubernetes as a service not a container
 ### .env
-`PIPELINE_APP_NAME=
+```
+PIPELINE_APP_NAME=
 KAFKA_HOST=
 KAFKA_PORT=
 KAFKA_CONSUMER_GROUP=
@@ -26,7 +27,8 @@ ES_HOST=
 ES_PORT=
 ES_INDEX_NAME=
 ES_USER=
-ES_PASSWORD=`
+ES_PASSWORD=
+```
 
 ## Run
 - Run `docker-compose up -d`
